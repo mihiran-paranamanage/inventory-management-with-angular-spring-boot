@@ -1,0 +1,40 @@
+version: "3.2"
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    restart: always
+    container_name: ims_client
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_DB: ims_db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+
+  db:
+    image: postgres
+    volumes:
+      - ims-pgdata:/var/lib/postgresql/data
+    restart: always
+    container_name: ims_postgres
+    environment:
+      POSTGRES_DB: ims_db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+
+  adminer:
+    image: adminer
+    ports:
+      - 9000:8080
+    restart: always
+    container_name: ims_adminer
+
+volumes:
+  ims-pgdata:
