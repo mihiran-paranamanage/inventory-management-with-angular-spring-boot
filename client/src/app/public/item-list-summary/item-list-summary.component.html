@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-grid-list cols="4" rowHeight="1.5rem">
+    <mat-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.color]="tile.color"
+      [style.background]="tile.backgroundColor">
+      {{tile.text}}
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
