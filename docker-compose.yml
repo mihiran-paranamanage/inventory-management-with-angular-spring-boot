@@ -12,22 +12,35 @@ services:
       - /client/node_modules
     restart: always
     container_name: ims_client
-    environment:
-      POSTGRES_HOST: db
-      POSTGRES_DB: ims_db
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: 1234
+    networks:
+      - ims-network
 
-  db:
-    image: postgres
-    volumes:
-      - ims-pgdata:/var/lib/postgresql/data
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
     restart: always
-    container_name: ims_postgres
+    container_name: ims_server
+    networks:
+      - ims-network
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ims-mysql:/var/lib/mysql
+    restart: always
+    container_name: ims_mysql
+    networks:
+      - ims-network
     environment:
-      POSTGRES_DB: ims_db
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: ims_mysql
 
   adminer:
     image: adminer
@@ -37,4 +50,7 @@ services:
     container_name: ims_adminer
 
 volumes:
-  ims-pgdata:
+  ims-mysql:
+
+networks:
+  ims-network:
