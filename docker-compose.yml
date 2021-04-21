@@ -48,6 +48,8 @@ services:
       - 9000:8080
     restart: always
     container_name: ims_adminer
+    networks:
+      - ims-network
 
 volumes:
   ims-mysql:
