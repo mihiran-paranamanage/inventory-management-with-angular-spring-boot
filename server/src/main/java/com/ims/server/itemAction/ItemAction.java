@@ -15,15 +15,16 @@ import com.ims.server.item.Item;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class ItemAction {
+
 	@Id
 	@GeneratedValue
 	private Long id;
 
 	@Column(nullable = false)
-	private final BigDecimal price;
+	private BigDecimal price;
 
 	@Column(nullable = false)
-	private final Long quantity;
+	private Long quantity;
 
 	@JsonIgnore
 	@CreatedDate

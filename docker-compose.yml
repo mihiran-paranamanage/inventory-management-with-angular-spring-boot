@@ -20,7 +20,7 @@ services:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - 8080:8080
+      - 4201:4201
     restart: always
     container_name: ims_server
     networks:
