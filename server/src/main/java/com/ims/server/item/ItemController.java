@@ -1,9 +1,15 @@
 package com.ims.server.item;
 
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ims.server.exception.ResourceNotFoundException;
 
@@ -14,25 +20,39 @@ public class ItemController {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    ItemModelAssembler itemModelAssembler;
+
     @GetMapping("/items")
-    public List<Item> getItems() {
-        return itemRepository.findAll();
+    public CollectionModel<EntityModel<Item>> getItems() {
+        List<EntityModel<Item>> items = itemRepository.findAll().stream()
+                .map(itemModelAssembler::toModel)
+                .collect(Collectors.toList());
+        return CollectionModel.of(
+                items,
+                linkTo(methodOn(ItemController.class).getItems()).withSelfRel()
+        );
     }
 
     @PostMapping("/items")
-    public Item saveItem(@RequestBody Item item) {
-        return itemRepository.save(item);
+    public ResponseEntity<?> saveItem(@RequestBody Item item) {
+        Item savedItem = itemRepository.save(item);
+        EntityModel<Item> itemModel = itemModelAssembler.toModel(savedItem);
+        return ResponseEntity
+                .created(itemModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(itemModel);
     }
 
     @GetMapping("/items/{itemId}")
-    public Item getItem(@PathVariable Long itemId) {
-        return itemRepository.findById(itemId)
+    public EntityModel<Item> getItem(@PathVariable Long itemId) {
+        Item item = itemRepository.findById(itemId)
                 .orElseThrow(ResourceNotFoundException::new);
+        return itemModelAssembler.toModel(item);
     }
 
     @PutMapping("/items/{itemId}")
-    public Item replaceItem(@PathVariable Long itemId, @RequestBody Item newItem) {
-        return itemRepository.findById(itemId)
+    public ResponseEntity<?> replaceItem(@PathVariable Long itemId, @RequestBody Item newItem) {
+        Item updatedItem = itemRepository.findById(itemId)
                 .map(item -> {
                     item.setCode(newItem.getCode());
                     item.setName(newItem.getName());
@@ -45,6 +65,10 @@ public class ItemController {
                     newItem.setId(itemId);
                     return itemRepository.save(newItem);
                 });
+        EntityModel<Item> itemModel = itemModelAssembler.toModel(updatedItem);
+        return ResponseEntity
+                .created(itemModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(itemModel);
     }
 
     @DeleteMapping("/items/{itemId}")
