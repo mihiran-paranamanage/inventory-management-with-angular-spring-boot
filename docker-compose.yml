@@ -45,7 +45,7 @@ services:
   adminer:
     image: adminer
     ports:
-      - 9000:8080
+      - 9001:8080
     restart: always
     container_name: ims_adminer
     networks:

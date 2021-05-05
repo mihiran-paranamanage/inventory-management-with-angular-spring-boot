@@ -1,0 +1,54 @@
+<form [formGroup]="itemForm" (ngSubmit)="onAdd()">
+
+  <mat-card-title>Add Item</mat-card-title>
+
+  <mat-divider></mat-divider>
+
+  <br />
+
+  <div class="mat-action-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Code</mat-label>
+      <input matInput placeholder="Ex: SM-00001" formControlName="code" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex: Redmi Note 8 Pro" formControlName="name" required>
+    </mat-form-field>
+  </div>
+
+  <br />
+
+  <div class="mat-action-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Cost</mat-label>
+      <input matInput placeholder="Cost" formControlName="cost" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput placeholder="Price" formControlName="price" required>
+    </mat-form-field>
+  </div>
+
+  <br />
+
+  <div class="mat-action-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Quantity</mat-label>
+      <input matInput placeholder="Quantity" formControlName="quantity" required>
+    </mat-form-field>
+  </div>
+
+  <br />
+
+  <div class="mat-action-row">
+    <button mat-stroked-button (click)="onCancel()">Cancel</button>
+    <button
+      mat-raised-button color="primary"
+      type="submit"
+      [disabled]="!itemForm.valid">Add</button>
+  </div>
+
+</form>

@@ -18,10 +18,16 @@
       <td mat-cell *matCellDef="let row"> {{row.name}} </td>
     </ng-container>
 
+    <!-- Cost Column -->
+    <ng-container matColumnDef="cost">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+      <td mat-cell *matCellDef="let row"> {{row.cost | currency:'LKR':'LKR '}} </td>
+    </ng-container>
+
     <!-- Price Column -->
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-      <td mat-cell *matCellDef="let row"> {{row.price | lkrCurrency}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.price | currency:'LKR':'LKR '}} </td>
     </ng-container>
 
     <!-- Quantity Column -->
