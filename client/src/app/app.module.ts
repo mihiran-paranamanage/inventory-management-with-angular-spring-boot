@@ -19,16 +19,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { CurrencyPipe } from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 import { AppComponent } from './app.component';
 import { ItemListComponent } from './public/item-list/item-list.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ItemListSummaryComponent } from './public/item-list-summary/item-list-summary.component';
 import { ItemsComponent } from './public/items/items.component';
-import { ItemSoldBtnComponent } from './public/item-sold-btn/item-sold-btn.component';
 import { SidenavMenuItemsComponent } from './shared/sidenav-menu-items/sidenav-menu-items.component';
 import { AddItemComponent } from './public/add-item/add-item.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { ItemInsertComponent } from './public/item-insert/item-insert.component';
+import { ItemSellComponent } from './public/item-sell/item-sell.component';
+import { ItemUpdateComponent } from './public/item-update/item-update.component';
+import { ItemDeleteComponent } from './public/item-delete/item-delete.component';
+import { ItemActionsComponent } from './public/item-actions/item-actions.component';
+import { ItemActionSellDetailsComponent } from './public/item-action-sell-details/item-action-sell-details.component';
+import { ItemActionInsertDetailsComponent } from './public/item-action-insert-details/item-action-insert-details.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +44,16 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     NavbarComponent,
     ItemListSummaryComponent,
     ItemsComponent,
-    ItemSoldBtnComponent,
     SidenavMenuItemsComponent,
     AddItemComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ItemInsertComponent,
+    ItemSellComponent,
+    ItemUpdateComponent,
+    ItemDeleteComponent,
+    ItemActionsComponent,
+    ItemActionSellDetailsComponent,
+    ItemActionInsertDetailsComponent
   ],
     imports: [
       BrowserModule,
@@ -61,7 +74,8 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
       MatListModule,
       MatIconModule,
       ReactiveFormsModule,
-      HttpClientModule
+      HttpClientModule,
+      MatBottomSheetModule
     ],
   providers: [
     CurrencyPipe
