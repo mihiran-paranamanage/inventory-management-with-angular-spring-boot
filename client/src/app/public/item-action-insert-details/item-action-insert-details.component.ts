@@ -56,7 +56,8 @@ export class ItemActionInsertDetailsComponent implements OnInit {
     this.matBottomSheetRef.dismiss();
   }
 
-  onCancel(): void {
+  onCancel($event: MouseEvent): void {
     this.matBottomSheetRef.dismiss();
+    $event.preventDefault();
   }
 }

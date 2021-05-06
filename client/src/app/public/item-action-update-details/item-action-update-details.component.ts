@@ -1,23 +1,17 @@
 import {Component, Inject, OnInit} from '@angular/core';
+import {Item} from '../../interfaces/item';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Location} from '@angular/common';
 import {ItemService} from '../../services/item/item.service';
 import {SnackbarService} from '../../services/snackbar/snackbar.service';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
-import {Item} from '../../interfaces/item';
-import {ItemAction} from '../../interfaces/itemAction';
 
 @Component({
-  selector: 'app-item-action-sell-details',
-  templateUrl: './item-action-sell-details.component.html',
-  styleUrls: ['./item-action-sell-details.component.sass']
+  selector: 'app-item-action-update-details',
+  templateUrl: './item-action-update-details.component.html',
+  styleUrls: ['./item-action-update-details.component.sass']
 })
-export class ItemActionSellDetailsComponent implements OnInit {
-
-  itemAction: ItemAction = {
-    price: 0,
-    quantity: 0,
-  };
+export class ItemActionUpdateDetailsComponent implements OnInit {
 
   textInputValidators = [Validators.required, Validators.maxLength(100)];
   currencyInputValidators = [Validators.required, Validators.pattern(/^\d+(.\d{2})?$/)];
@@ -27,7 +21,8 @@ export class ItemActionSellDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private itemService: ItemService,
-    private matBottomSheetRef: MatBottomSheetRef<ItemActionSellDetailsComponent>,
+    private snackbarService: SnackbarService,
+    private matBottomSheetRef: MatBottomSheetRef<ItemActionUpdateDetailsComponent>,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: {item: Item}
   ) { }
 
@@ -36,22 +31,20 @@ export class ItemActionSellDetailsComponent implements OnInit {
     name: [this.data.item.name, this.textInputValidators],
     cost: [this.data.item.cost, this.currencyInputValidators],
     price: [this.data.item.price, this.currencyInputValidators],
-    quantity: ['', this.numberInputValidators]
+    quantity: [this.data.item.quantity, this.numberInputValidators]
   });
 
   ngOnInit(): void {
   }
 
-  onSell(): void {
+  onUpdate(): void {
     const item: Item = this.itemForm.value;
-    const url = 'http://localhost:4201/api/items/' + this.data.item.id + '/itemActions';
-    this.itemAction.price = item.price;
-    this.itemAction.quantity = -item.quantity;
-    this.itemService.addItemAction(url, this.itemAction)
-      .subscribe(() => this.onSold());
+    const url = 'http://localhost:4201/api/items/' + this.data.item.id;
+    this.itemService.updateItem(url, item)
+      .subscribe(() => this.onUpdated());
   }
 
-  onSold(): void {
+  onUpdated(): void {
     this.matBottomSheetRef.dismiss();
   }
 

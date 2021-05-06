@@ -44,11 +44,11 @@
   <br />
 
   <div class="mat-action-row">
-    <button mat-stroked-button (click)="onCancel()">Cancel</button>
+    <button mat-stroked-button (click)="onCancel($event)">Cancel</button>
     <button
       mat-raised-button color="primary"
       type="submit"
-      [disabled]="!itemForm.valid">Add</button>
+      [disabled]="!itemForm.valid">Insert</button>
   </div>
 
   <br /><br />

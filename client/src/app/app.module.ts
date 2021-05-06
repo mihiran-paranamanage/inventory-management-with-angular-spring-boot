@@ -36,6 +36,9 @@ import { ItemDeleteComponent } from './public/item-delete/item-delete.component'
 import { ItemActionsComponent } from './public/item-actions/item-actions.component';
 import { ItemActionSellDetailsComponent } from './public/item-action-sell-details/item-action-sell-details.component';
 import { ItemActionInsertDetailsComponent } from './public/item-action-insert-details/item-action-insert-details.component';
+import { ItemActionDeleteConfirmationComponent } from './public/item-action-delete-confirmation/item-action-delete-confirmation.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { ItemActionUpdateDetailsComponent } from './public/item-action-update-details/item-action-update-details.component';
 
 @NgModule({
   declarations: [
@@ -53,29 +56,32 @@ import { ItemActionInsertDetailsComponent } from './public/item-action-insert-de
     ItemDeleteComponent,
     ItemActionsComponent,
     ItemActionSellDetailsComponent,
-    ItemActionInsertDetailsComponent
+    ItemActionInsertDetailsComponent,
+    ItemActionDeleteConfirmationComponent,
+    ItemActionUpdateDetailsComponent
   ],
     imports: [
-      BrowserModule,
-      AppRoutingModule,
-      BrowserAnimationsModule,
-      MatToolbarModule,
-      MatTableModule,
-      MatPaginatorModule,
-      MatSortModule,
-      MatFormFieldModule,
-      MatInputModule,
-      MatCardModule,
-      MatDividerModule,
-      MatGridListModule,
-      MatButtonModule,
-      MatSnackBarModule,
-      MatSidenavModule,
-      MatListModule,
-      MatIconModule,
-      ReactiveFormsModule,
-      HttpClientModule,
-      MatBottomSheetModule
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatDividerModule,
+        MatGridListModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatBottomSheetModule,
+        MatDialogModule
     ],
   providers: [
     CurrencyPipe

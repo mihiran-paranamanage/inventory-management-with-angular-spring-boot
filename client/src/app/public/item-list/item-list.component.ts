@@ -59,4 +59,8 @@ export class ItemListComponent implements AfterViewInit {
   onSold(item: Item): void {
     this.updateTableDataSource(this.items);
   }
+
+  onUpdate(item: Item): void {
+    this.updateTableDataSource(this.items);
+  }
 }

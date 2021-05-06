@@ -12,6 +12,7 @@ export class ItemActionsComponent implements OnInit {
   @Output() deleted =  new EventEmitter();
   @Output() inserted =  new EventEmitter();
   @Output() sold =  new EventEmitter();
+  @Output() updated =  new EventEmitter();
 
   constructor() { }
 
@@ -28,5 +29,9 @@ export class ItemActionsComponent implements OnInit {
 
   onSold(item: Item): void {
     this.sold.emit(item);
+  }
+
+  onUpdate(item: Item): void {
+    this.updated.emit(item);
   }
 }

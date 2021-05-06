@@ -1,12 +1,27 @@
-<mat-card>
-  <mat-grid-list cols="4" rowHeight="1.5rem">
-    <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.color]="tile.color"
-      [style.background]="tile.backgroundColor">
-      {{tile.text}}
-    </mat-grid-tile>
-  </mat-grid-list>
-</mat-card>
+<ng-container *ngIf="itemSummary$ | async as itemSummary">
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title>
+        <ng-container>
+          Item Summary - {{ itemSummary.date }}
+        </ng-container>
+      </mat-card-title>
+
+      <ng-container>
+        Daily Profit : <span class="daily-profit-value"><b>{{ itemSummary.dailyProfit }}</b></span>
+      </ng-container>
+
+      <br />
+
+      <ng-container>
+        No. of items sold : <span><b>{{ itemSummary.soldCount }}</b></span>
+      </ng-container>
+
+      <br />
+
+      <ng-container>
+        No. of items inserted : <span><b>{{ itemSummary.insertedCount }}</b></span>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

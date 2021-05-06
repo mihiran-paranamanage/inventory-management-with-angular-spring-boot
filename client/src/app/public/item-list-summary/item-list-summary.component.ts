@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Tile} from '../../interfaces/tile';
+import {interval, Observable, Subscribable, Subscription} from 'rxjs';
+import {ItemSummary} from '../../interfaces/itemSummary';
+import {ItemService} from '../../services/item/item.service';
 
 @Component({
   selector: 'app-item-list-summary',
@@ -9,13 +11,15 @@ import {Tile} from '../../interfaces/tile';
 })
 export class ItemListSummaryComponent implements OnInit {
 
-  tiles: Tile[] = [
-    {text: 'Daily Profit', cols: 2, rows: 2, backgroundColor: 'lightgray', color: '#000'},
-    {text: 'Number of Items Sold', cols: 2, rows: 2, backgroundColor: 'lightgray', color: '#000'},
-    {text: '1200', cols: 2, rows: 2, backgroundColor: 'lightgray', color: 'red'},
-    {text: '25', cols: 2, rows: 2, backgroundColor: 'lightgray', color: 'red'}
-  ];
+  itemSummary$!: Observable<ItemSummary>;
+
+  constructor(
+    private itemService: ItemService
+  ) {
+  }
 
   ngOnInit(): void {
+    const url = 'http://localhost:4201/api/items/summary';
+    this.itemSummary$ = this.itemService.getItemSummary(url);
   }
 }

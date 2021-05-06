@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 
 import {Item} from '../../interfaces/item';
 import {ItemAction} from '../../interfaces/itemAction';
+import {ItemSummary} from '../../interfaces/itemSummary';
 
 interface ItemsResponse {
   _embedded: {
@@ -47,5 +48,12 @@ export class ItemService {
 
   addItemAction(url: string, itemAction: ItemAction): Observable<ItemAction> {
     return this.http.post<ItemAction>(url, itemAction);
+  }
+
+  getItemSummary(url: string): Observable<ItemSummary> {
+    return this.http.get<ItemSummary>(url)
+      .pipe(
+        map(response => response)
+      );
   }
 }

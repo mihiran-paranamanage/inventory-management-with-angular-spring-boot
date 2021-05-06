@@ -1,6 +1,6 @@
-<form [formGroup]="itemForm" (ngSubmit)="onSell()">
+<form [formGroup]="itemForm" (ngSubmit)="onUpdate()">
 
-  <mat-card-title>Sell Item</mat-card-title>
+  <mat-card-title>Insert Item</mat-card-title>
 
   <mat-divider></mat-divider>
 
@@ -14,7 +14,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput placeholder="Ex: Redmi Note 8 Pro" formControlName="name" readonly>
+      <input matInput placeholder="Ex: Redmi Note 8 Pro" formControlName="name" required>
     </mat-form-field>
   </div>
 
@@ -23,7 +23,7 @@
   <div class="mat-action-row">
     <mat-form-field appearance="outline">
       <mat-label>Cost</mat-label>
-      <input matInput placeholder="Cost" formControlName="cost" readonly>
+      <input matInput placeholder="Cost" formControlName="cost" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -48,7 +48,7 @@
     <button
       mat-raised-button color="primary"
       type="submit"
-      [disabled]="!itemForm.valid">Sell</button>
+      [disabled]="!itemForm.valid">Update</button>
   </div>
 
   <br /><br />

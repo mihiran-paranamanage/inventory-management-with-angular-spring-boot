@@ -44,8 +44,8 @@ public class Item {
 	Item() {
 		this.code = "IMS-" + this.id;
 		this.name = "IMS-Item";
-		this.cost = BigDecimal.valueOf(0);
-		this.price = BigDecimal.valueOf(0);
+		this.cost = BigDecimal.ZERO;
+		this.price = BigDecimal.ZERO;
 		this.quantity = 0L;
 	}
 }

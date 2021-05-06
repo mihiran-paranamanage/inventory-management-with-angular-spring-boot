@@ -39,7 +39,7 @@ public class ItemAction {
 	private Item item;
 
 	ItemAction() {
-		this.price = BigDecimal.valueOf(0);
+		this.price = BigDecimal.ZERO;
 		this.quantity = 0L;
 	}
 }
