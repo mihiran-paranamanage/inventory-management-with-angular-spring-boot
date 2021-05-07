@@ -7,9 +7,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4200:4200
-    volumes:
-      - ./client:/client
-      - /client/node_modules
+#    Dev Mode Start
+#    volumes:
+#      - ./client:/client
+#      - /client/node_modules
+#    Dev Mode End
     restart: always
     container_name: ims_client
     networks:
