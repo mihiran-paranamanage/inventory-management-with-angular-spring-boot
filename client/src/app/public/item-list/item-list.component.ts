@@ -2,9 +2,12 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {ItemService} from '../../services/item/item.service';
+import {SnackbarService} from '../../services/snackbar/snackbar.service';
 
 import {Item} from '../../interfaces/item';
+import {ItemAction} from '../../interfaces/item-action';
+import {ItemService} from '../../services/item/item.service';
+import {ItemEventListenerService} from '../../services/item-event-listener/item-event-listener.service';
 
 @Component({
   selector: 'app-item-list',
@@ -22,18 +25,39 @@ export class ItemListComponent implements AfterViewInit {
 
   constructor(
     private itemService: ItemService,
+    private snackbarService: SnackbarService,
+    private itemEventListenerService: ItemEventListenerService
   ) {
+    this.itemEventListenerService.itemEventSellEmit$.subscribe(itemAction => {
+      this.onSold(itemAction);
+    });
+    this.itemEventListenerService.itemEventInsertEmit$.subscribe(itemAction => {
+      this.onInserted(itemAction);
+    });
+    this.itemEventListenerService.itemEventUpdateEmit$.subscribe(item => {
+      this.onUpdated(item);
+    });
+    this.itemEventListenerService.itemEventDeleteEmit$.subscribe(() => {
+      this.onDeleted();
+    });
   }
 
   ngAfterViewInit(): void {
-    const url = 'http://localhost:4201/api/items';
-    this.itemService.getItems(url)
-      .subscribe(items => this.updateTableDataSource(items));
+    this.fetchItems();
   }
 
-  updateTableDataSource(items: Item[]): void {
-    this.items = items;
-    this.dataSource = new MatTableDataSource<Item>(items);
+  fetchItems(): void {
+    // Todo Use HATEOAS Urls
+    const url = 'http://localhost:4201/api/items';
+    this.itemService.getItems(url)
+      .subscribe(items => {
+        this.items = items;
+        this.updateTableDataSource();
+      });
+  }
+
+  updateTableDataSource(): void {
+    this.dataSource = new MatTableDataSource<Item>(this.items);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -47,20 +71,28 @@ export class ItemListComponent implements AfterViewInit {
     }
   }
 
-  onDeleted(item: Item): void {
-    this.items = this.items.filter(h => h !== item);
-    this.updateTableDataSource(this.items);
+  onSold(itemAction: ItemAction): void {
+    // Todo Item List needs to be updated without fetching data from the back-end
+    this.snackbarService.openSnackBar('Item Sold Successfully!');
+    this.fetchItems();
   }
 
-  onInserted(item: Item): void {
-    this.updateTableDataSource(this.items);
+  onInserted(itemAction: ItemAction): void {
+    // Todo Item List needs to be updated without fetching data from the back-end
+    this.snackbarService.openSnackBar('Item Inserted Successfully!');
+    this.fetchItems();
   }
 
-  onSold(item: Item): void {
-    this.updateTableDataSource(this.items);
+  onUpdated(item: Item): void {
+    // Todo Item List needs to be updated without fetching data from the back-end
+    this.snackbarService.openSnackBar('Item Updated Successfully!');
+    this.fetchItems();
   }
 
-  onUpdate(item: Item): void {
-    this.updateTableDataSource(this.items);
+  onDeleted(): void {
+    // Todo Item List needs to be updated without fetching data from the back-end
+    // this.items = this.items.filter(h => h !== item);
+    this.snackbarService.openSnackBar('Item Deleted Successfully!');
+    this.fetchItems();
   }
 }

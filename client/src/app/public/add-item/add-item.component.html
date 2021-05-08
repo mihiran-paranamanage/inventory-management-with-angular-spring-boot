@@ -1,6 +1,6 @@
 <form [formGroup]="itemForm" (ngSubmit)="onAdd()">
 
-  <mat-card-title>Add Item</mat-card-title>
+  <mat-card-title>{{itemActionTitle}}</mat-card-title>
 
   <mat-divider></mat-divider>
 
@@ -43,12 +43,11 @@
 
   <br />
 
-  <div class="mat-action-row">
-    <button mat-stroked-button (click)="onCancel()">Cancel</button>
+  <ng-container>
+    <button mat-stroked-button>Cancel</button>
     <button
       mat-raised-button color="primary"
-      type="submit"
-      [disabled]="!itemForm.valid">Add</button>
-  </div>
+      [disabled]="!itemForm.valid">{{submitButtonLabel}}</button>
+  </ng-container>
 
 </form>

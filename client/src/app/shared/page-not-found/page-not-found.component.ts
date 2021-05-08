@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MenuItem} from '../../interfaces/menuItem';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import {MenuItem} from '../../interfaces/menu-item';
 
 @Component({
   selector: 'app-page-not-found',

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {MenuItem} from '../../interfaces/menuItem';
+import { Component, OnInit } from '@angular/core';
+
+import {MenuItem} from '../../interfaces/menu-item';
 
 @Component({
   selector: 'app-sidenav-menu-items',

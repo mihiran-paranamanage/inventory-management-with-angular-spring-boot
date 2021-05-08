@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'client';
+
+  // Todo Fetch title from the configurations through HTTP Client
+  title = 'Client';
 }

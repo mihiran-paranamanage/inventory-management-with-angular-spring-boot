@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+
 import {Item} from '../../interfaces/item';
-import {MatBottomSheet} from '@angular/material/bottom-sheet';
-import {SnackbarService} from '../../services/snackbar/snackbar.service';
-import {ItemActionUpdateDetailsComponent} from '../item-action-update-details/item-action-update-details.component';
+import {ItemService} from '../../services/item/item.service';
+import {ItemDetailsFormComponent} from '../item-details-form/item-details-form.component';
 
 @Component({
   selector: 'app-item-update',
@@ -12,24 +13,43 @@ import {ItemActionUpdateDetailsComponent} from '../item-action-update-details/it
 export class ItemUpdateComponent implements OnInit {
 
   @Input() item!: Item;
-  @Output() updated =  new EventEmitter();
 
   constructor(
-    private matBottomSheet: MatBottomSheet,
-    private snackbarService: SnackbarService
+    private matDialog: MatDialog,
+    private itemService: ItemService
   ) { }
 
   ngOnInit(): void {
   }
 
   onUpdate(): void {
-    this.matBottomSheet.open(ItemActionUpdateDetailsComponent, {
-      data: {item: this.item}
+    const dialogRef = this.openDialog();
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateItem(result);
+      }
     });
   }
 
-  onUpdated(item: Item): void {
-    this.updated.emit(item);
-    this.snackbarService.openSnackBar('Item Updated Successfully!');
+  private openDialog(): MatDialogRef<any> {
+    const item: Item = Object.assign({}, this.item);
+    return this.matDialog.open(ItemDetailsFormComponent, {
+      data: {item, itemActionTitle: 'Update Item', submitButtonLabel: 'Update'}
+    });
+  }
+
+  private updateItem(result: Item): void {
+    // Todo Use HATEOAS Urls
+    const url = 'http://localhost:4201/api/items/' + this.item.id;
+    const item: Item = {
+      id: undefined,
+      code: result.code,
+      name: result.name,
+      cost: result.cost,
+      price: result.price,
+      quantity: result.quantity
+    };
+    this.itemService.updateItem(url, item)
+      .subscribe();
   }
 }

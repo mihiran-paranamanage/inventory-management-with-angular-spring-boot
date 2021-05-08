@@ -11,5 +11,4 @@ export class ItemActionDeleteConfirmationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

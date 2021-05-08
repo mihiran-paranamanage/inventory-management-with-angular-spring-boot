@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
 
-import {interval, Observable, Subscribable, Subscription} from 'rxjs';
-import {ItemSummary} from '../../interfaces/itemSummary';
+import {ItemSummary} from '../../interfaces/item-summary';
 import {ItemService} from '../../services/item/item.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class ItemListSummaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Todo Use HATEOAS Urls
     const url = 'http://localhost:4201/api/items/summary';
     this.itemSummary$ = this.itemService.getItemSummary(url);
   }

@@ -35,10 +35,8 @@ import { ItemSellComponent } from './public/item-sell/item-sell.component';
 import { ItemUpdateComponent } from './public/item-update/item-update.component';
 import { ItemDeleteComponent } from './public/item-delete/item-delete.component';
 import { ItemActionsComponent } from './public/item-actions/item-actions.component';
-import { ItemActionSellDetailsComponent } from './public/item-action-sell-details/item-action-sell-details.component';
-import { ItemActionInsertDetailsComponent } from './public/item-action-insert-details/item-action-insert-details.component';
 import { ItemActionDeleteConfirmationComponent } from './public/item-action-delete-confirmation/item-action-delete-confirmation.component';
-import { ItemActionUpdateDetailsComponent } from './public/item-action-update-details/item-action-update-details.component';
+import { ItemDetailsFormComponent } from './public/item-details-form/item-details-form.component';
 
 @NgModule({
   declarations: [
@@ -55,10 +53,8 @@ import { ItemActionUpdateDetailsComponent } from './public/item-action-update-de
     ItemUpdateComponent,
     ItemDeleteComponent,
     ItemActionsComponent,
-    ItemActionSellDetailsComponent,
-    ItemActionInsertDetailsComponent,
     ItemActionDeleteConfirmationComponent,
-    ItemActionUpdateDetailsComponent
+    ItemDetailsFormComponent
   ],
     imports: [
         BrowserModule,

@@ -1,8 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MatBottomSheet} from '@angular/material/bottom-sheet';
-import {ItemActionInsertDetailsComponent} from '../item-action-insert-details/item-action-insert-details.component';
+import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+
 import {Item} from '../../interfaces/item';
-import {SnackbarService} from '../../services/snackbar/snackbar.service';
+import {ItemAction} from '../../interfaces/item-action';
+import {ItemService} from '../../services/item/item.service';
+import {ItemDetailsFormComponent} from '../item-details-form/item-details-form.component';
 
 @Component({
   selector: 'app-item-insert',
@@ -12,24 +14,41 @@ import {SnackbarService} from '../../services/snackbar/snackbar.service';
 export class ItemInsertComponent implements OnInit {
 
   @Input() item!: Item;
-  @Output() inserted =  new EventEmitter();
 
   constructor(
-    private matBottomSheet: MatBottomSheet,
-    private snackbarService: SnackbarService
+    private matDialog: MatDialog,
+    private itemService: ItemService
   ) { }
 
   ngOnInit(): void {
   }
 
   onInsert(): void {
-    this.matBottomSheet.open(ItemActionInsertDetailsComponent, {
-      data: {item: this.item}
+    const dialogRef = this.openDialog();
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.insertItem(result);
+      }
     });
   }
 
-  onInserted(item: Item): void {
-    this.inserted.emit(item);
-    this.snackbarService.openSnackBar('Item Inserted Successfully!');
+  private openDialog(): MatDialogRef<any> {
+    const item: Item = Object.assign({}, this.item);
+    item.quantity = undefined;
+    return this.matDialog.open(ItemDetailsFormComponent, {
+      data: {item, itemActionTitle: 'Insert Item', submitButtonLabel: 'Insert'}
+    });
+  }
+
+  private insertItem(result: Item): void {
+    // Todo Use HATEOAS Urls
+    const url = 'http://localhost:4201/api/items/' + this.item.id + '/itemActions';
+    const itemAction: ItemAction = {
+      id: undefined,
+      price: result.price ? result.price : 0,
+      quantity: result.quantity ? result.quantity : 0
+    };
+    this.itemService.insertItem(url, itemAction)
+      .subscribe();
   }
 }

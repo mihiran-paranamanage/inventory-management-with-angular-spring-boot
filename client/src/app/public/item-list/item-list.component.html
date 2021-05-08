@@ -40,11 +40,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let item">
-        <app-item-actions [item]="item"
-                          (inserted)="onInserted(item)"
-                          (sold)="onSold(item)"
-                          (updated)="onUpdate(item)"
-                          (deleted)="onDeleted(item)"></app-item-actions>
+        <app-item-actions [item]="item"></app-item-actions>
       </td>
     </ng-container>
 
