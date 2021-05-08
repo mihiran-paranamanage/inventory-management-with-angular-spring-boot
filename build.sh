@@ -1,7 +1,8 @@
 #!/bin/sh
 
+echo -e "\n";
 echo "Starting the build . . . ";
-echo "\n";
+echo -e "\n";
 
 # Build the angular client app
 cd ./client/;
@@ -35,5 +36,6 @@ sudo cp -R ./installer.sh ./build/
 # Creating the final zip file with all the necessary build artifacts
 sudo zip -r ./build/ims-stable-v0.0.1.zip ./build
 
+echo -e "\n";
 echo "Build Completed!";
-echo "\n";
+echo -e "\n";
