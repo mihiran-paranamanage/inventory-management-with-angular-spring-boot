@@ -28,6 +28,14 @@ export class ItemListComponent implements AfterViewInit {
     private snackbarService: SnackbarService,
     private itemEventListenerService: ItemEventListenerService
   ) {
+    this.subscribeForItemEvents();
+  }
+
+  ngAfterViewInit(): void {
+    this.fetchItems();
+  }
+
+  subscribeForItemEvents(): void {
     this.itemEventListenerService.itemEventSellEmit$.subscribe(itemAction => {
       this.onSold(itemAction);
     });
@@ -40,10 +48,6 @@ export class ItemListComponent implements AfterViewInit {
     this.itemEventListenerService.itemEventDeleteEmit$.subscribe(() => {
       this.onDeleted();
     });
-  }
-
-  ngAfterViewInit(): void {
-    this.fetchItems();
   }
 
   fetchItems(): void {
