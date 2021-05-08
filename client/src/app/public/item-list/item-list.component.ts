@@ -48,6 +48,9 @@ export class ItemListComponent implements AfterViewInit {
     this.itemEventListenerService.itemEventDeleteEmit$.subscribe(() => {
       this.onDeleted();
     });
+    this.itemEventListenerService.itemEventFailureEmit$.subscribe(error => {
+      this.onFailure(error);
+    });
   }
 
   fetchItems(): void {
@@ -98,5 +101,9 @@ export class ItemListComponent implements AfterViewInit {
     // this.items = this.items.filter(h => h !== item);
     this.snackbarService.openSnackBar('Item Deleted Successfully!');
     this.fetchItems();
+  }
+
+  onFailure(error: any): void {
+    this.snackbarService.openSnackBar('Request Failed!');
   }
 }
