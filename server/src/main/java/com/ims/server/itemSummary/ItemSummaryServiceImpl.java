@@ -38,9 +38,9 @@ public class ItemSummaryServiceImpl implements ItemSummaryService {
 
             BigDecimal quantity = new BigDecimal(itemAction.getQuantity());
             if (quantity.compareTo(BigDecimal.ZERO) > 0) {
-                insertedCount++;
+                insertedCount = insertedCount + quantity.longValue();
             } else {
-                soldCount++;
+                soldCount = soldCount + quantity.negate().longValue();
             }
 
             BigDecimal itemProfit = itemAction.getPrice().subtract(itemAction.getItem().getCost());
