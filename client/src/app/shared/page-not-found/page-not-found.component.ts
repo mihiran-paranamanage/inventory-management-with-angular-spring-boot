@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MenuItem} from '../../interfaces/menuItem';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  // Todo Fetch title and subtitle from the configurations through HTTP Client
+  pageNotFoundTitle = 'Page Not Found!';
+  pageNotFoundSubTitle = 'Please visit one of the following Urls.';
+  menuItems: MenuItem[] = [];
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    // Todo Fetch menu items from the configurations through HTTP Client
+    this.menuItems = [
+      {id: 1, name: 'Item List', routerLink: ['/items'], matIcon: 'view_list'},
+      {id: 2, name: 'Add Item', routerLink: ['/items/add'], matIcon: 'playlist_add'},
+      {id: 3, name: 'Item History', routerLink: ['/items/history'], matIcon: 'history'}
+    ];
   }
 
+  onClick(selection: any): void {
+    this.router.navigate(selection.selectedOptions.selected[0]?.value);
+  }
 }

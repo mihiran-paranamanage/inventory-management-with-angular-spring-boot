@@ -20,6 +20,7 @@ import { CurrencyPipe } from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { ItemListComponent } from './public/item-list/item-list.component';
@@ -37,7 +38,6 @@ import { ItemActionsComponent } from './public/item-actions/item-actions.compone
 import { ItemActionSellDetailsComponent } from './public/item-action-sell-details/item-action-sell-details.component';
 import { ItemActionInsertDetailsComponent } from './public/item-action-insert-details/item-action-insert-details.component';
 import { ItemActionDeleteConfirmationComponent } from './public/item-action-delete-confirmation/item-action-delete-confirmation.component';
-import {MatDialogModule} from "@angular/material/dialog";
 import { ItemActionUpdateDetailsComponent } from './public/item-action-update-details/item-action-update-details.component';
 
 @NgModule({

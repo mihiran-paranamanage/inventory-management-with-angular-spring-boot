@@ -1,1 +1,18 @@
-<p>page-not-found!</p>
+<mat-card>
+  <mat-card-title>
+    {{pageNotFoundTitle}}
+  </mat-card-title>
+  <br />
+  <ng-container>
+    {{pageNotFoundSubTitle}}
+  </ng-container>
+  <ng-container>
+    <mat-selection-list #selection [multiple]="false">
+      <mat-list-option *ngFor="let menuItem of menuItems"
+                       [value]="menuItem.routerLink"
+                       (click)="onClick(selection)">
+        {{menuItem.name}}
+      </mat-list-option>
+    </mat-selection-list>
+  </ng-container>
+</mat-card>

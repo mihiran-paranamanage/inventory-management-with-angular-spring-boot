@@ -4,11 +4,12 @@ This is an inventory management system that can be used to track item transactio
 
 ### Features
 
-1. Add Items with basic details (Item ID, Item Name, Cost, Price, Quantity).
-2. All the CRUD operations for items (View items, Add items, Edit items, Delete items).
-3. Item list and filters (Shows items in a list and filtering them by Item ID, Item Name, etc.).
-4. Sell items (By clicking the "Sell" button, it can be sold for a custom price or the item price itself).
-5. Insert items (By clicking the "Insert" button, items can be inserted. This can also be used when an item is returned that has already been sold).
+1. Add Items with basic details such as Item ID, Item Name, Cost, Price, Quantity.
+2. All the CRUD operations for items such as View items, Add items, Edit items, Delete items.
+3. Item list and filters - Shows items in a list and filtering them by Item ID, Item Name, etc.
+4. Sell items - By clicking the "Sell" button, it can be sold for a custom price or the item price itself.
+5. Insert items - By clicking the "Insert" button, items can be inserted. This can also be used when an item is returned that has already been sold.
+6. View item history - Shows item transaction details for a selected date.
 
 ### Used Technologies
 
@@ -42,3 +43,8 @@ Also, it wll create a separate build folder located in the root folder with all 
 4. Follow the commands in the "build.sh" script and do the relevant tasks by using the OS specific commands.
 5. Follow the commands in the "install.sh" script and do the relevant tasks by using the OS specific commands.
 6. Browse http://localhost:4200/
+
+### Enable Dev Mode
+
+* Dev Mode is defined in several places in the code with "Dev Mode Start" and "Dev Mode End" tags.
+  This can be enabled by un-commenting the code lines inside those tags for development purposes.
