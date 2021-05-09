@@ -11,9 +11,28 @@ import {Item} from '../../interfaces/item';
 })
 export class ItemDetailsFormComponent implements OnInit {
 
+  readonlyFields: {
+    code?: boolean;
+    name?: boolean,
+    cost?: boolean,
+    price?: boolean,
+    quantity?: boolean
+  } = {};
+
   constructor(
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: {item: Item, itemActionTitle: string, submitButtonLabel: string}
+    @Inject(MAT_DIALOG_DATA) public data: {
+      item: Item,
+      itemActionTitle: string,
+      submitButtonLabel: string,
+      readonlyFields: {
+        code?: boolean;
+        name?: boolean,
+        cost?: boolean,
+        price?: boolean,
+        quantity?: boolean
+      }
+    }
   ) { }
 
   textInputValidators = [Validators.required, Validators.maxLength(100)];

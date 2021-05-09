@@ -9,12 +9,12 @@
   <div class="mat-action-row">
     <mat-form-field appearance="outline">
       <mat-label>Code</mat-label>
-      <input matInput placeholder="e.g. SM-00001" formControlName="code" readonly>
+      <input matInput placeholder="e.g. SM-00001" formControlName="code" [readonly]="data.readonlyFields.code" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput placeholder="e.g. Redmi Note 8 Pro" formControlName="name" required>
+      <input matInput placeholder="e.g. Redmi Note 8 Pro" formControlName="name" [readonly]="data.readonlyFields.name" required>
     </mat-form-field>
   </div>
 
@@ -23,12 +23,12 @@
   <div class="mat-action-row">
     <mat-form-field appearance="outline">
       <mat-label>Cost</mat-label>
-      <input matInput placeholder="Cost" formControlName="cost" required>
+      <input matInput placeholder="Cost" formControlName="cost" [readonly]="data.readonlyFields.cost" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Price</mat-label>
-      <input matInput placeholder="Price" formControlName="price" required>
+      <input matInput placeholder="Price" formControlName="price" [readonly]="data.readonlyFields.price" required>
     </mat-form-field>
   </div>
 
@@ -37,7 +37,7 @@
   <div class="mat-action-row">
     <mat-form-field appearance="outline">
       <mat-label>Quantity</mat-label>
-      <input matInput placeholder="Quantity" formControlName="quantity" required>
+      <input matInput placeholder="Quantity" formControlName="quantity" [readonly]="data.readonlyFields.quantity" required>
     </mat-form-field>
   </div>
 

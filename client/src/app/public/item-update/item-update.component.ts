@@ -34,7 +34,18 @@ export class ItemUpdateComponent implements OnInit {
   private openDialog(): MatDialogRef<any> {
     const item: Item = Object.assign({}, this.item);
     return this.matDialog.open(ItemDetailsFormComponent, {
-      data: {item, itemActionTitle: 'Update Item', submitButtonLabel: 'Update'}
+      data: {
+        item,
+        itemActionTitle: 'Update Item',
+        submitButtonLabel: 'Update',
+        readonlyFields: {
+          code: true,
+          name: false,
+          cost: false,
+          price: false,
+          quantity: false
+        }
+      }
     });
   }
 

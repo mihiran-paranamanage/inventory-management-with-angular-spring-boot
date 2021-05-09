@@ -36,7 +36,18 @@ export class ItemInsertComponent implements OnInit {
     const item: Item = Object.assign({}, this.item);
     item.quantity = undefined;
     return this.matDialog.open(ItemDetailsFormComponent, {
-      data: {item, itemActionTitle: 'Insert Item', submitButtonLabel: 'Insert'}
+      data: {
+        item,
+        itemActionTitle: 'Insert Item',
+        submitButtonLabel: 'Insert',
+        readonlyFields: {
+          code: true,
+          name: true,
+          cost: true,
+          price: true,
+          quantity: false
+        }
+      }
     });
   }
 
