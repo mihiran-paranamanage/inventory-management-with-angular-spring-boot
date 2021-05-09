@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.List;
 
+import com.ims.server.item.Item;
+
 @Repository
 public interface ItemActionRepository extends JpaRepository<ItemAction, Long> {
 
@@ -14,4 +16,6 @@ public interface ItemActionRepository extends JpaRepository<ItemAction, Long> {
     Optional<ItemAction> findByIdAndItemId(Long id, Long itemId);
 
     List<ItemAction> findByCreatedDateBetween(LocalDateTime startDate, LocalDateTime endDate);
+
+    void deleteAllByItem(Item item);
 }

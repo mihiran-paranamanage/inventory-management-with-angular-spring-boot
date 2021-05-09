@@ -12,7 +12,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 
+import com.ims.server.itemAction.ItemActionRepository;
 import com.ims.server.exception.ResourceNotFoundException;
 
 @Service
@@ -20,6 +22,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     ItemRepository itemRepository;
+
+    @Autowired
+    ItemActionRepository itemActionRepository;
 
     @Autowired
     ItemModelAssembler itemModelAssembler;
@@ -73,10 +78,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<?> deleteItem(Long itemId) {
         return itemRepository.findById(itemId)
                 .map(item -> {
-                    itemRepository.deleteById(itemId);
+                    deleteItemWithRelatedItemActions(item);
                     return ResponseEntity.noContent().build();
                 })
                 .orElseThrow(ResourceNotFoundException::new);
@@ -89,5 +95,10 @@ public class ItemServiceImpl implements ItemService {
         } else {
             throw new ResourceUniqueViolationException();
         }
+    }
+
+    protected void deleteItemWithRelatedItemActions(Item item) {
+        itemActionRepository.deleteAllByItem(item);
+        itemRepository.deleteById(item.getId());
     }
 }

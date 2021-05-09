@@ -52,6 +52,7 @@ public class ItemActionServiceImpl implements ItemActionService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<?> saveItemAction(Long itemId, ItemAction itemAction) {
         ItemAction savedItemAction = itemRepository.findById(itemId)
                 .map(item -> {
@@ -72,6 +73,7 @@ public class ItemActionServiceImpl implements ItemActionService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<?> replaceItemAction(Long itemId, Long itemActionId, ItemAction newItemAction) {
         ItemAction savedItemAction = itemRepository.findById(itemId)
                 .map(item -> {
@@ -91,6 +93,7 @@ public class ItemActionServiceImpl implements ItemActionService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<?> deleteItemAction(Long itemId, Long itemActionId) {
         return itemRepository.findById(itemId)
                 .map(item -> {
@@ -103,14 +106,12 @@ public class ItemActionServiceImpl implements ItemActionService {
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
-    @Transactional
     protected ItemAction saveItemActionAndUpdateRelations(Item item, ItemAction itemAction) {
         adjustItemQuantity(Action.ADD, item, itemAction, null);
         itemAction.setItem(item);
         return itemActionRepository.save(itemAction);
     }
 
-    @Transactional
     protected ItemAction replaceItemActionAndUpdateRelations(Item item, ItemAction itemAction, ItemAction newItemAction) {
         adjustItemQuantity(Action.UPDATE, item, itemAction, newItemAction);
         itemAction.setPrice(newItemAction.getPrice());
@@ -118,7 +119,6 @@ public class ItemActionServiceImpl implements ItemActionService {
         return itemActionRepository.save(itemAction);
     }
 
-    @Transactional
     protected ResponseEntity<?> deleteItemActionAndUpdateRelations(Item item, ItemAction itemAction) {
         adjustItemQuantity(Action.DELETE, item, itemAction, null);
         itemActionRepository.deleteById(itemAction.getId());
