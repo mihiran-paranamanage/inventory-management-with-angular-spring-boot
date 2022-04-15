@@ -43,6 +43,7 @@ Also, it wll create a separate build folder inside the root folder with all the 
 
 1. Install Docker Desktop (Refer https://docs.docker.com/docker-for-windows/install/ or https://docs.docker.com/docker-for-mac/install/).
 2. Follow the above Ubuntu installation process. With docker, you won't have to do any other OS specific installation steps. Use the docker terminal to run the above commands.
+3. If Node.js, npm and Angluar CLI not installed, you may need to install them first before the above Ubuntu installation process.
 
 ### Enable Dev Mode
 
