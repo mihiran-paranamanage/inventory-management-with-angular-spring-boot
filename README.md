@@ -40,8 +40,6 @@ Also, it wll create a separate build folder located in the root folder with all 
 1. Install Docker Desktop (Refer https://docs.docker.com/docker-for-windows/install/ or https://docs.docker.com/docker-for-mac/install/).
 2. Follow the above Ubuntu installation process. With docker, you won't have to do any other OS specific installation steps. Use the docker terminal to run the above commands.
 
-* Use docker terminal with docker desktop in order to run the above "build.sh" and "install.sh" scripts.
-
 ### Enable Dev Mode
 
 * Dev Mode is defined in several places in the code with "Dev Mode Start" and "Dev Mode End" tags.
