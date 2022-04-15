@@ -26,7 +26,7 @@ This is an inventory management system that can be used to track item transactio
 1. Install Docker and Docker Compose (Refer https://docs.docker.com/engine/install/ubuntu/ and https://docs.docker.com/compose/install/).
 2. Clone this repo (`git clone https://github.com/mihiran-paranamana/inventory-management-angular-spring-boot.git`).
 3. Move into the _inventory-management-angular-spring-boot_ root folder (`cd inventory-management-angular-spring-boot`).
-4. Run build script ($ sudo bash ./build.sh).
+4. Run build script (`sudo bash ./build.sh`).
 5. Run the installation script (`sudo bash ./install.sh`).
 6. Browse http://localhost:4200/
 
