@@ -38,11 +38,7 @@ Also, it wll create a separate build folder located in the root folder with all 
 ### Installation (on Windows or Mac)
 
 1. Install Docker Desktop (Refer https://docs.docker.com/docker-for-windows/install/ or https://docs.docker.com/docker-for-mac/install/).
-2. Clone this repo (`git clone https://github.com/mihiran-paranamana/inventory-management-angular-spring-boot.git`).
-3. Move into the _inventory-management-angular-spring-boot_ root folder (`cd inventory-management-angular-spring-boot`).
-4. Run build script (`sudo bash ./build.sh`).
-5. Run the installation script (`sudo bash ./install.sh`).
-6. Browse http://localhost:4200/
+2. Follow the above Ubuntu installation process. With docker, you won't have to do any other OS specific installation steps. Use the docker terminal to run the above commands.
 
 * Use docker terminal with docker desktop in order to run the above "build.sh" and "install.sh" scripts.
 
