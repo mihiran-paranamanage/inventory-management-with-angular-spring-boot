@@ -1,4 +1,4 @@
-# Inventory Management with Angular and Spring boot 
+# Inventory Management System with Angular and Spring boot 
 
 This is an inventory management system that can be used to track item transactions such as adding new items, selling items, inserting items, etc.
 
