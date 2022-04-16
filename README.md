@@ -2,10 +2,6 @@
 
 This is an inventory management system that can be used to track item transactions such as adding new items, selling items, inserting items, etc.
 
-### Images & Videos
-* Images of the application can be found in the _images_ folder.
-* [Click here](https://drive.google.com/drive/folders/1mZjjC_NEZQTcPBP4auC_BIaGpki-6e7j?usp=sharing) to see the Demo.
-
 ### Languages & Tools
 
 * Angular 11
@@ -49,6 +45,9 @@ Also, it wll create a separate build folder inside the root folder with all the 
 
 * Dev Mode is defined in several places in the code with "Dev Mode Start" and "Dev Mode End" tags.
   This can be enabled by un-commenting the code lines inside those tags for development purposes.
+
+### Demo
+* [Click here](https://drive.google.com/file/d/1AQLQ4TDIOAXnu6EYtFF2Rv8-1bOjBnR8/view?usp=sharing) to see the Demo.
 
 ### Contact Details
 
