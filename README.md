@@ -6,6 +6,7 @@ This is an inventory management system that can be used to track item transactio
 
 * Angular 11
 * Angular Material
+* TypeScript
 * Spring Boot 2.4.5
 * Spring Boot JPA (Java Persistence API)
 * HATEOAS (REST APIs with Hypermedia)
