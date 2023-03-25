@@ -48,7 +48,7 @@ Also, it wll create a separate build folder inside the root folder with all the 
   This can be enabled by un-commenting the code lines inside those tags for development purposes.
 
 ### Demo
-* [Click here](https://drive.google.com/file/d/1AQLQ4TDIOAXnu6EYtFF2Rv8-1bOjBnR8/view?usp=sharing) to see the demo video.
+* [Click here](https://drive.google.com/file/d/1Z6XPvLJtYI3L-C6yaTAAuEAi8515mTPp/view?usp=sharing) to see the demo video.
 
 ### Contact Details
 
