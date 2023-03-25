@@ -52,5 +52,5 @@ Also, it wll create a separate build folder inside the root folder with all the 
 
 ### Contact Details
 
-* Email: mihiran.hlrm@gmail.com
-* SkypeId: live:mihiran.hlrm
+* Email: mihiranpg@gmail.com
+* LinkedIn: https://www.linkedin.com/in/mihiran-paranamana
